@@ -18,11 +18,10 @@ export const goods = [
 
 export const App = () => {
   const [selectedGood, setSelectedGood] = useState('Jam');
-  const [activeGoodName, setActiveGoodName] = useState('Jam');
 
   return (
     <main className="section container">
-      {activeGoodName ? (
+      {selectedGood ? (
         <h1 className="title is-flex is-align-items-center">
           {selectedGood} is selected
           <button
@@ -30,7 +29,7 @@ export const App = () => {
             type="button"
             className="delete ml-3"
             onClick={() => {
-              setActiveGoodName('');
+              setSelectedGood('');
             }}
           />
         </h1>
@@ -46,18 +45,17 @@ export const App = () => {
             <tr
               data-cy="Good"
               className={classNames({
-                'has-background-success-light': activeGoodName === good,
+                'has-background-success-light': selectedGood === good,
               })}
             >
               <td>
-                {activeGoodName !== good ? (
+                {selectedGood !== good ? (
                   <button
                     data-cy="AddButton"
                     type="button"
                     className="button"
                     onClick={() => {
                       setSelectedGood(good);
-                      setActiveGoodName(good);
                     }}
                   >
                     +
@@ -69,7 +67,6 @@ export const App = () => {
                     className="button is-info"
                     onClick={() => {
                       setSelectedGood('');
-                      setActiveGoodName('');
                     }}
                   >
                     -
